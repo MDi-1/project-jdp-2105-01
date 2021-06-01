@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.UserDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
