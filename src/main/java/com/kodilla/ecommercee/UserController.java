@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/userKey/")
-    public UserDto createRandomUSerKey(@PathVariable Long id) {
+    public UserDto createRandomUserKey(@PathVariable Long id) {
         return new UserDto(3L, 7890, "User3");
     }
 }

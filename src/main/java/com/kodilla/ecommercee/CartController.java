@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.CartDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -8,31 +7,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 
 @RestController
-@RequestMapping("/v1/cart")
+@RequestMapping("/v1/cart/")
 public class CartController {
 
     @PostMapping(value = "createEmptyCart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Cart createEmptyCart(CartDto cartDto) {
-        return new Cart();
+    public void createEmptyCart(@PathVariable Long userId) {
+       //do nothing
     }
 
-    @PatchMapping("/{id}/getProductFromEmptyCart/")
-    public void getProductFromEmptyCart() {
+    @PatchMapping("getProductFromEmptyCart/")
+    public void getProductFromEmptyCart(@RequestParam Long cartId) {
         System.out.println("You have no products in Your cart");
     }
 
-    @PutMapping("cart/addProduct")
-    public CartDto addProductToCart(CartDto cartDto) {
+    @PutMapping("addProduct")
+    public CartDto addProductToCart(@RequestParam Long cartId, @RequestParam Long productId) {
         return new CartDto(1L, 500, Arrays.asList("Product1", "Product2"), "Cart1");
     }
 
-    @DeleteMapping("cart/deleteProduct")
-    public void deleteProductFromCart(Long id) {
+    @DeleteMapping("deleteProduct")
+    public void deleteProductFromCart(@RequestParam Long cartId, @RequestParam Long productId) {
         // do nothing
     }
 
-    @PostMapping(value = "cart/createOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Cart createAnOrderBasedOnACart() {
-        return new Cart();
+    @PostMapping(value = "createOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createAnOrderBasedOnACart(@RequestBody CartDto cartDto) {
+        //do nothing
     }
 }
