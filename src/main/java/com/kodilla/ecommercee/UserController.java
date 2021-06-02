@@ -4,11 +4,11 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/v1/ecommerce")
+@RequestMapping("/v1/user")
 public class UserController {
 
     @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createUSer(@RequestBody UserDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) {
         //do nothing
     }
 
