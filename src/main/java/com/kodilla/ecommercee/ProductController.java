@@ -15,8 +15,8 @@ public class ProductController {
 
 
     @RequestMapping(method = RequestMethod.POST, value = "createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDto createProduct(@RequestBody Long id) {
-        return new ProductDto(id, "Product", "product", 22);
+    public ProductDto createProduct(@RequestBody ProductDto productDto) {
+        return productDto;
 
     }
 
