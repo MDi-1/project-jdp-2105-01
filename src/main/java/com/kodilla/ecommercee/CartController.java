@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.CartDto;
+import com.kodilla.ecommercee.domain.OrderDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class CartController {
        //do nothing
     }
 
-    @PatchMapping("getProductFromEmptyCart/")
+    @PatchMapping("getProductFromEmptyCart")
     public void getProductFromEmptyCart(@RequestParam Long cartId) {
         System.out.println("You have no products in Your cart");
     }
@@ -31,7 +32,7 @@ public class CartController {
     }
 
     @PostMapping(value = "createOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createAnOrderBasedOnACart(@RequestBody CartDto cartDto) {
-        //do nothing
+    public OrderDto createAnOrderBasedOnACart(@RequestParam Long cartId) {
+        return new OrderDto(1L,"paid");
     }
 }
