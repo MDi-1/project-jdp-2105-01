@@ -9,5 +9,5 @@ import lombok.Getter;
 public class GroupDto {
 
     private int id;
-    private String Name;
+    private String name;
 }
