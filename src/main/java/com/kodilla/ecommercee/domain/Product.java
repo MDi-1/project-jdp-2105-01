@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,9 +23,28 @@ public class Product {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DESCRITION")
+    @Column(name = "DESCRIPTION")
     private String description;
 
     @Column(name = "PRICE")
     private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "GROUP_ID")
+    private Group group;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "products"
+    )
+    private List<Cart> carts;
+
+    @ManyToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "order"
+    )
+    private List<Order> orders;
+
 }
