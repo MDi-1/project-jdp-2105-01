@@ -43,7 +43,7 @@ public class Product {
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "order"
+            mappedBy = "products"
     )
     private List<Order> orders;
 
