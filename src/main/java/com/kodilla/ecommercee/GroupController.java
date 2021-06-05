@@ -17,20 +17,20 @@ public class GroupController {
     }
 
     @GetMapping(value = "getGroup")
-    public GroupDto getGroup(int id) {
+    public GroupDto getGroup(@RequestParam int id) {
         return new GroupDto(id, "Group");
     }
 
     @PostMapping(value = "createGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createGroup(GroupDto groupDto) {
+    public void createGroup(@RequestParam GroupDto groupDto) {
     }
 
     @PutMapping(value = "updateGroup")
-    public GroupDto updateGroup(GroupDto groupDto) {
+    public GroupDto updateGroup(@RequestParam GroupDto groupDto) {
         return new GroupDto(1, "Group");
     }
 
     @DeleteMapping("deleteGroup")
-    public void deleteGroup(int id) {
+    public void deleteGroup(@RequestParam int id) {
     }
 }
