@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.UserDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}/userKey/")
-    public UserDto createRandomUSerKey(@PathVariable Long id) {
+    public UserDto createRandomUserKey(@PathVariable Long id) {
         return new UserDto(3L, 7890, "User3");
     }
 }
