@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,6 +17,7 @@ public class Cart {
     @Id
     @GeneratedValue
     @NotNull
+    @Column(name = "CART_ID", unique = true)
     private Long id;
 
     @Column(name = "VALUE")
@@ -27,6 +26,11 @@ public class Cart {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "USER_ID")
-    private User userId;
+    @OneToOne
+    @JoinColumn(name = "USER")
+    private User user;
+
+    @Column(name = "PRODUCTS")
+    @ManyToMany
+    private List<Product> products;
 }
