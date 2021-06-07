@@ -1,6 +1,9 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.ProductDto;
+import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -14,10 +17,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductController {
 
+    private final ProductService service;
+    private final ProductMapper productMapper;
+
 
     @RequestMapping(method = RequestMethod.POST, value = "createProduct", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProductDto createProduct(@RequestBody ProductDto productDto) {
-        return productDto;
+    public void createProduct(@RequestBody ProductDto productDto) {
+        Product product = productMapper.mapToProduct(productDto);
+        service.saveProduct(product);
 
     }
 
