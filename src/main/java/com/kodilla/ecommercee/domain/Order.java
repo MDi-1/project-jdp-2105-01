@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "ORDER")
+@Entity(name = "ORDER_NAME")
 public class Order {
 
     @Id

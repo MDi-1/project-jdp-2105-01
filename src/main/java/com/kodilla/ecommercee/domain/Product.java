@@ -8,7 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
-@AllArgsConstructor
+
 @NoArgsConstructor
 @Getter
 @Entity(name = "PRODUCT")
@@ -17,6 +17,7 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
+    @Column(name = "PRODUCT_ID")
     private Long id;
 
     @NotNull
@@ -47,6 +48,10 @@ public class Product {
     )
     private List<Order> orders;
 
-
-
+    public Product(Long id, String name, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 }
