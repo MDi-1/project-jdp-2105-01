@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.Random;
 
 @Repository
-public interface UserRepository extends CrudRepository<User, Long> {
+public interface  UserRepository extends CrudRepository<User, Long> {
 
     @Override
     List<User> findAll();
