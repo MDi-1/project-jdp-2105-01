@@ -72,7 +72,7 @@ public class UserTestSuite {
 //        Then
         userRepository.deleteById(id);
         Optional<User> deleteUser = userRepository.findById(id);
-//        assertFalse(deleteUser.isPresent());
+        assertFalse(deleteUser.isPresent());
     }
 
 
