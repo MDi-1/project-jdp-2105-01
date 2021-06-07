@@ -21,27 +21,19 @@ public class UserTestSuite {
     UserRepository userRepository;
 
 
-
     @Test
     public void testUserFindAll(){
 //        Given
-
         User user1 = new User(1L, 324, "TestName");
         User user2 = new User(2L, 1424, "TestName2");
-
 //        When
-
         userRepository.save(user1);
         userRepository.save(user2);
         Long idUser1 = user1.getId();
         Long idUser2 = user2.getId();
-
 //        Then
-
         assertEquals(2, userRepository.findAll().size());
-
         //        Clean Up
-
         userRepository.deleteById(idUser1);
         userRepository.deleteById(idUser2);
     }
@@ -49,20 +41,14 @@ public class UserTestSuite {
     @Test
     public void testUserCreate(){
 //        Given
-
         User user = new User(1L,232,"CreateName");
 //        When
-
         userRepository.save(user);
         Long id = user.getId();
-
 //        Then
-
         Optional<User> testId = userRepository.findById(id);
         assertTrue(testId.isPresent());
-
 //        Clean Up
-
         userRepository.deleteById(id);
 
     }
@@ -70,16 +56,11 @@ public class UserTestSuite {
     @Test
     public void testUserDeleteById(){
 //        Given
-
         User user = new User(1L, 5253, "DeleteName");
-
 //        When
-
         userRepository.save(user);
         long id = user.getId();
-
 //        Then
-
         userRepository.deleteById(id);
         Optional<User> deleteUser = userRepository.findById(id);
         assertFalse(deleteUser.isPresent());

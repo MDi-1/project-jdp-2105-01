@@ -17,7 +17,6 @@ public class User {
         this.id = id;
         this.key = key;
         this.name = name;
-
     }
 
 
