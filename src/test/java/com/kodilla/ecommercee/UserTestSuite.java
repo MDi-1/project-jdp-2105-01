@@ -25,50 +25,46 @@ public class UserTestSuite {
     @Test
     public void testUserFindAll() {
 //        Given
-        User user1 = new User(1L, 324, "TestName");
-//        User user2 = new User(2L, 1424, "TestName2");
+        User user = new User(1L, 324, "TestName");
+
 //        When
-        userRepository.save(user1);
-//        userRepository.save(user2);
-        Long idUser1 = user1.getId();
-//        Long idUser2 = user2.getId();
+        userRepository.save(user);
+        Long id = user.getId();
+
 //        Then
         assertEquals(1, userRepository.findAll().size());
         //        Clean Up
-        try {
-            userRepository.deleteById(idUser1);
-//            userRepository.deleteById(idUser2);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+
+        userRepository.deleteById(id);
     }
 
     @Test
     public void testUserCreate() {
 //        Given
         User user = new User(1L, 232, "CreateName");
+
 //        When
         userRepository.save(user);
         Long id = user.getId();
+
 //        Then
         Optional<User> testId = userRepository.findById(id);
         assertTrue(testId.isPresent());
-//        Clean Up
-        try {
-            userRepository.deleteById(id);
-        } catch (Exception e) {
-            System.out.println(e);
 
-        }
+//        Clean Up
+            userRepository.deleteById(id);
+
     }
 
     @Test
     public void testUserDeleteById(){
 //        Given
         User user = new User(1L, 5253, "DeleteName");
+
 //        When
         userRepository.save(user);
         long id = user.getId();
+
 //        Then
         userRepository.deleteById(id);
         Optional<User> deleteUser = userRepository.findById(id);
