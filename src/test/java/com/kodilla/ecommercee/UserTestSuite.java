@@ -23,7 +23,7 @@ public class UserTestSuite {
 
 
     @Test
-    public void testUserFindAll(){
+    public void testUserFindAll() {
 //        Given
         User user1 = new User(1L, 324, "TestName");
         User user2 = new User(2L, 1424, "TestName2");
@@ -35,8 +35,12 @@ public class UserTestSuite {
 //        Then
 //        assertEquals(2, userRepository.findAll().size());
         //        Clean Up
-        userRepository.deleteById(idUser1);
-        userRepository.deleteById(idUser2);
+        try {
+            userRepository.deleteById(idUser1);
+            userRepository.deleteById(idUser2);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Test
