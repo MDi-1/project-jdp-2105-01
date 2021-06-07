@@ -52,7 +52,7 @@ public class UserTestSuite {
         Long id = user.getId();
 //        Then
         Optional<User> testId = userRepository.findById(id);
-//        assertTrue(testId.isPresent());
+        assertTrue(testId.isPresent());
 //        Clean Up
         try {
             userRepository.deleteById(id);
