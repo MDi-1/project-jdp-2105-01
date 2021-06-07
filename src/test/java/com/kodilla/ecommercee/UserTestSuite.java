@@ -33,7 +33,7 @@ public class UserTestSuite {
         Long idUser1 = user1.getId();
         Long idUser2 = user2.getId();
 //        Then
-//        assertEquals(2, userRepository.findAll().size());
+        assertEquals(2, userRepository.findAll().size());
         //        Clean Up
         try {
             userRepository.deleteById(idUser1);
