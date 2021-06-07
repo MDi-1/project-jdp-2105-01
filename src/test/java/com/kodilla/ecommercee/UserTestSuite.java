@@ -26,18 +26,18 @@ public class UserTestSuite {
     public void testUserFindAll() {
 //        Given
         User user1 = new User(1L, 324, "TestName");
-        User user2 = new User(2L, 1424, "TestName2");
+//        User user2 = new User(2L, 1424, "TestName2");
 //        When
         userRepository.save(user1);
-        userRepository.save(user2);
+//        userRepository.save(user2);
         Long idUser1 = user1.getId();
-        Long idUser2 = user2.getId();
+//        Long idUser2 = user2.getId();
 //        Then
-        assertEquals(2, userRepository.findAll().size());
+        assertEquals(1, userRepository.findAll().size());
         //        Clean Up
         try {
             userRepository.deleteById(idUser1);
-            userRepository.deleteById(idUser2);
+//            userRepository.deleteById(idUser2);
         } catch (Exception e) {
             System.out.println(e);
         }
