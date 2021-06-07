@@ -21,22 +21,22 @@ public class UserTestSuite {
     UserRepository userRepository;
 
 
-    @Test
-    public void testUserFindAll(){
-//        Given
-        User user1 = new User(1L, 324, "TestName");
-        User user2 = new User(2L, 1424, "TestName2");
-//        When
-        userRepository.save(user1);
-        userRepository.save(user2);
-        Long idUser1 = user1.getId();
-        Long idUser2 = user2.getId();
-//        Then
-        assertEquals(2, userRepository.findAll().size());
-        //        Clean Up
-        userRepository.deleteById(idUser1);
-        userRepository.deleteById(idUser2);
-    }
+//    @Test
+//    public void testUserFindAll(){
+////        Given
+//        User user1 = new User(1L, 324, "TestName");
+//        User user2 = new User(2L, 1424, "TestName2");
+////        When
+//        userRepository.save(user1);
+//        userRepository.save(user2);
+//        Long idUser1 = user1.getId();
+//        Long idUser2 = user2.getId();
+////        Then
+//        assertEquals(2, userRepository.findAll().size());
+//        //        Clean Up
+//        userRepository.deleteById(idUser1);
+//        userRepository.deleteById(idUser2);
+//    }
 
     @Test
     public void testUserCreate(){
