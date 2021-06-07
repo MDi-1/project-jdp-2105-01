@@ -34,8 +34,11 @@ public class UserTestSuite {
 //        Then
         assertEquals(1, userRepository.findAll().size());
         //        Clean Up
-
-        userRepository.deleteById(id);
+        try{
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Test
@@ -52,7 +55,11 @@ public class UserTestSuite {
         assertTrue(testId.isPresent());
 
 //        Clean Up
+        try{
             userRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
 
     }
 
