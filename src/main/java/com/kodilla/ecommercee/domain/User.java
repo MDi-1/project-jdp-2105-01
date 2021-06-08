@@ -26,7 +26,10 @@ public class User {
     @Column(name = "NAME")
     private String name;
 
-    @JoinColumn(name = "CART")
-    @OneToOne
+    @Column(name = "BLOCKED")
+    private boolean isBlocked;
+
+    @JoinColumn(name = "CART_ID")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cart cart;
 }
