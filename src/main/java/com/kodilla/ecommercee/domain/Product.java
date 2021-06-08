@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,14 @@ import java.util.List;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity(name = "PRODUCT")
 public class Product {
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "ID")
     private Long id;
 
     @NotNull
@@ -39,6 +41,7 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
+
     private List<Cart> carts;
 
     @ManyToMany(
@@ -46,12 +49,14 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
+
     private List<Order> orders;
 
-    public Product(Long id, String name, String description, double price) {
+    public Product( Long id,  String name, String description, double price, Group group) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.group = group;
     }
 }

@@ -30,7 +30,7 @@ public class ProductController {
 
     @GetMapping("getProduct/{id}")
     public ProductDto getProduct(@PathVariable Long id) {
-        return new ProductDto(id, "Product1", "product1", 22.2);
+        return new ProductDto(id, "Product1", "product1", 22.2, 2L);
 
     }
 
@@ -41,7 +41,7 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.DELETE, value = "deleteProduct/{id}")
     public ProductDto deleteProduct(@PathVariable Long id) {
-        return new ProductDto(id, "product", "product", 22);
+        return new ProductDto(id, "product", "product", 22,3L);
 
     }
 
