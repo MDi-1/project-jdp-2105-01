@@ -30,7 +30,7 @@ public class Cart {
     @JoinColumn(name = "USER")
     private User user;
 
-    @Column(name = "PRODUCTS")
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY)
     private List<Product> products;
 }
