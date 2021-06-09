@@ -56,5 +56,4 @@ public class Product {
             mappedBy = "products"
     )
     private List<Order> orders = new ArrayList<>();
-
 }
