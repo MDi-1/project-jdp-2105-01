@@ -76,7 +76,6 @@ public class CartTestSuite {
         cart.getProducts().add(product2);
         cartRepository.save(cart);
         cartRepository.save(cart);
-        //String name = product2.getName();
 
 
         //Then
@@ -90,14 +89,12 @@ public class CartTestSuite {
         //Given
         User user = new User();
         Cart cart = new Cart();
-        List<Product> products = new ArrayList<>();
         Product product1 = new Product("Product1", "Description1", 13.70);
         Product product2 = new Product("Product2", "Description2", 20.00);
 
-        products.add(product1);
-        products.add(product2);
-        cart.setProducts(products);
         cart.setUser(user);
+        cart.getProducts().add(product1);
+        cart.getProducts().add(product2);
 
 
         //When
@@ -105,7 +102,8 @@ public class CartTestSuite {
         cartRepository.deleteById(cart.getId());
 
         //Then
-        assertTrue(products.size() == 2);
+        List<Product> products = productRepository.findAll();
+        assertEquals(2, products.size());
     }
 
     @Test
@@ -122,7 +120,7 @@ public class CartTestSuite {
         cartRepository.deleteById(cart.getId());
 
         //Then
-        List<User> userList = userRepository.findAll();
-        assertEquals(1, userList.size());
+        List<User> users = userRepository.findAll();
+        assertEquals(user, users.get(0));
     }
 }
