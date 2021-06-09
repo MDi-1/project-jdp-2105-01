@@ -17,15 +17,21 @@ import java.util.List;
 @Entity(name = "CARTS")
 public class Cart {
 
+    public Cart(String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "VALUE")
     private double value;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 
