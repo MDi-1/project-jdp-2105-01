@@ -29,7 +29,7 @@ public class Cart {
     @Column(name = "NAME")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}, fetch=FetchType.EAGER)
     @JoinColumn(name = "USER_ID")
     private User user;
 
