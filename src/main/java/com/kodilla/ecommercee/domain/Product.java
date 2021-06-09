@@ -17,6 +17,7 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
+    @Column(name = "PRODUCT_ID")
     private Long id;
 
     @NotNull

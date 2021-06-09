@@ -20,17 +20,23 @@ public class Cart {
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "VALUE")
     private double value;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name = "USER")
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}, fetch=FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
     private User user;
 
-    @Column(name = "PRODUCTS")
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @JoinTable(
+            name = "JOIN_CARTS_PRODUCTS",
+            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
+    )
     private List<Product> products;
 }
