@@ -52,11 +52,11 @@ public class Product {
 
     private List<Order> orders;
 
-    public Product( Long id,  String name, String description, double price, Group group) {
+    public Product( Long id,  String name, String description, double price) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.group = group;
+
     }
 }
