@@ -3,16 +3,23 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 @Entity(name = "CARTS")
 public class Cart {
+
+    public Cart(String name) {
+        this.name = name;
+    }
 
     @Id
     @GeneratedValue
@@ -38,5 +45,5 @@ public class Cart {
             joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "CART_ID")},
             inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
     )
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 }

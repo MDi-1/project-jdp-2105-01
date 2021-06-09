@@ -3,21 +3,30 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "PRODUCT")
+@Setter
+@Entity(name = "PRODUCTS")
 public class Product {
+
+    public Product(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "PRODUCT_ID")
+    @Column(name = "PRODUCT_ID", unique = true)
     private Long id;
 
     @NotNull
@@ -39,13 +48,12 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-    private List<Cart> carts;
+    private List<Cart> carts = new ArrayList<>();
 
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-    private List<Order> orders;
-
+    private List<Order> orders = new ArrayList<>();
 }
