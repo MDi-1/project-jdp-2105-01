@@ -34,7 +34,6 @@ public class CartTestSuite {
     UserRepository userRepository;
 
     @Test
-    @Transactional
     public void testFindById() {
         //Given
         Cart cart = new Cart("Cart1");
@@ -46,10 +45,12 @@ public class CartTestSuite {
         //Then
         Optional<Cart> cartOptional = cartRepository.findById(id);
         assertEquals(id, cartOptional.get().getId());
+
+        //CleanUp
+        cartRepository.deleteById(id);
     }
 
     @Test
-    @Transactional
     public void testDeleteCart() {
         //Given
         Cart cart = new Cart("Cart1");
@@ -64,7 +65,6 @@ public class CartTestSuite {
     }
 
     @Test
-    @Transactional
     public void testUpdateCart() {
         //Given
         Product product1 = new Product("Product1", "Description1", 7.50);
@@ -81,10 +81,12 @@ public class CartTestSuite {
         //Then
         List<Product> productList = productRepository.findAll();
         assertEquals(2, productList.size());
+
+        //CleanUp
+        productRepository.deleteAll();
     }
 
     @Test
-    @Transactional
     public void testProductIsPresentWhenCartDeleted() {
         //Given
         User user = new User("User1");
@@ -104,10 +106,12 @@ public class CartTestSuite {
         //Then
         List<Product> products = productRepository.findAll();
         assertEquals(2, products.size());
+
+        //CleanUp
+        productRepository.deleteAll();
     }
 
     @Test
-    @Transactional
     public void testUserWhenCartDeleted() {
         //Given
         Cart cart = new Cart("Cart1");
@@ -122,5 +126,8 @@ public class CartTestSuite {
         //Then
         List<User> users = userRepository.findAll();
         assertEquals(user, users.get(0));
+
+        //CleanUp
+        userRepository.deleteAll();
     }
 }
