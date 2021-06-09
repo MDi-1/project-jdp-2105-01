@@ -23,9 +23,11 @@ public class Cart {
     @Column(name = "CART_ID", unique = true)
     private Long id;
 
+    @NotNull
     @Column(name = "VALUE")
     private double value;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 

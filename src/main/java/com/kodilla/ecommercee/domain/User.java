@@ -25,10 +25,14 @@ public class User {
     @Column(name = "USER_KEY", unique = true)
     private int key;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 
-    @JoinColumn(name = "CART")
-    @OneToOne(cascade = CascadeType.ALL)
+    @Column(name = "BLOCKED")
+    private boolean isBlocked;
+
+    @JoinColumn(name = "CART_ID")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cart cart;
 }
