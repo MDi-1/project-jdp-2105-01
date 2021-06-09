@@ -23,6 +23,7 @@ public class User {
     @Column(name = "USER_KEY", unique = true)
     private int key;
 
+    @NotNull
     @Column(name = "NAME")
     private String name;
 
