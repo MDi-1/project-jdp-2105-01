@@ -65,6 +65,25 @@ public class CartTestSuite {
     }
 
     @Test
+    public void testDeleteProductFromCart() {
+        //Given
+        Product product1 = new Product("Product1", "Description1", 10.00);
+        Product product2 = new Product("Product2", "Description2", 20.00);
+        Cart cart = new Cart("Cart1");
+
+        //When
+        cart.getProducts().add(product1);
+        cart.getProducts().add(product2);
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.deleteByName(product1.getName());
+
+        //Then
+        List<Product> products = productRepository.findAll();
+        assertEquals(1, products.size());
+    }
+
+    @Test
     public void testUpdateCart() {
         //Given
         Product product1 = new Product("Product1", "Description1", 7.50);
@@ -75,12 +94,11 @@ public class CartTestSuite {
         cart.getProducts().add(product1);
         cart.getProducts().add(product2);
         cartRepository.save(cart);
-        cartRepository.save(cart);
 
 
         //Then
-        List<Product> productList = productRepository.findAll();
-        assertEquals(2, productList.size());
+        List<Product> products = productRepository.findAll();
+        assertEquals(2, products.size());
 
         //CleanUp
         productRepository.deleteAll();
