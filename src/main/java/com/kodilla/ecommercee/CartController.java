@@ -11,7 +11,7 @@ import java.util.Arrays;
 @RequestMapping("/v1/cart/")
 public class CartController {
 
-    @PostMapping(value = "createEmptyCart", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createEmptyCart/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createEmptyCart(@PathVariable Long userId) {
        //do nothing
     }

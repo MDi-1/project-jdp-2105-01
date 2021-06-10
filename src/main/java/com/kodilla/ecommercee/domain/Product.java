@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @NoArgsConstructor
+
 @Getter
 @Setter
 @Entity(name = "PRODUCT")
