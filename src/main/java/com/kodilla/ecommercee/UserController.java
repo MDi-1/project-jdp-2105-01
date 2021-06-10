@@ -31,7 +31,7 @@ public class UserController {
         return userService.getUser(id);
     }
 
-    @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createUser(@RequestBody UserDto userDto) {
         userService.addUser(userDto);
