@@ -1,14 +1,14 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.exception.ProductNotFoundException;
 import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.domain.ProductDto;
+import com.kodilla.ecommercee.dTo.ProductDto;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 

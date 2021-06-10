@@ -1,12 +1,11 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.dTo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class GroupDto {
-
+public class OrderDto {
     private Long id;
-    private String name;
+    private String orderStatus;
 }
