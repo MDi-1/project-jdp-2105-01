@@ -8,19 +8,32 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 
 @Getter
 @Setter
-@Entity(name = "PRODUCT")
+
+
+@Entity(name = "PRODUCTS")
+
 public class Product {
+
+    public Product(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ID")
+
+
+    @Column(name = "PRODUCT_ID", unique = true)
+
     private Long id;
 
     @NotNull
@@ -42,16 +55,15 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
+    private List<Cart> carts = new ArrayList<>();
 
-    private List<Cart> carts;
 
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-
-    private List<Order> orders;
+    private List<Order> orders = new ArrayList<>();
 
     public Product( Long id,  String name, String description, double price) {
         this.id = id;
@@ -60,4 +72,7 @@ public class Product {
         this.price = price;
 
     }
+
+
+
 }

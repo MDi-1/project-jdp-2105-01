@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -30,5 +31,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 }
