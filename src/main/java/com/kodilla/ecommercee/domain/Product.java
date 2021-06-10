@@ -14,14 +14,11 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-<<<<<<< HEAD
+
 
 
 @Entity(name = "PRODUCTS")
 
-=======
-@Entity(name = "PRODUCTS")
->>>>>>> 90cddb1fa15b75319bd90aa635f3e990bf184842
 public class Product {
 
     public Product(String name, String description, double price) {
@@ -33,14 +30,9 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
-<<<<<<< HEAD
-
 
     @Column(name = "PRODUCT_ID", unique = true)
 
-=======
-    @Column(name = "PRODUCT_ID", unique = true)
->>>>>>> 90cddb1fa15b75319bd90aa635f3e990bf184842
     private Long id;
 
     @NotNull
@@ -63,21 +55,14 @@ public class Product {
             mappedBy = "products"
     )
     private List<Cart> carts = new ArrayList<>();
-<<<<<<< HEAD
-
-=======
->>>>>>> 90cddb1fa15b75319bd90aa635f3e990bf184842
 
     @ManyToMany(
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-<<<<<<< HEAD
+
     private List<Order> orders = new ArrayList<>();
-=======
-    private List<Order> orders;
->>>>>>> 90cddb1fa15b75319bd90aa635f3e990bf184842
 
     public Product( Long id,  String name, String description, double price) {
         this.id = id;
@@ -85,12 +70,7 @@ public class Product {
         this.description = description;
         this.price = price;
 
-<<<<<<< HEAD
     }
 
 
-
-=======
-    private List<Order> orders = new ArrayList<>();
->>>>>>> 90cddb1fa15b75319bd90aa635f3e990bf184842
 }
