@@ -1,25 +1,70 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.domain.UserDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/v1/user")
 public class UserController {
 
-    @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody UserDto userDto) {
-        //do nothing
+    @Autowired
+    private final UserService userService;
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<UserDto> getUsers() {
+        return userService.getUsers();
     }
 
-    @PatchMapping("/{id}/status/")
-    public UserDto blockUser(@PathVariable Long id) {
-        return new UserDto(2L, 5678, "User2");
+    @GetMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto getUser(@PathVariable Long id) throws UserNotFoundException {
+        return userService.getUser(id);
+    }
+
+    @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody UserDto userDto) {
+        userService.addUser(userDto);
+    }
+
+    @PatchMapping("/{id}/block/")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void blockUser(@PathVariable Long id) throws UserNotFoundException {
+        User user = userService.findUserById(id)
+                .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
+        user.setBlocked(true);
+        userService.saveUser(user);
     }
 
     @PatchMapping("/{id}/userKey/")
-    public UserDto createRandomUserKey(@PathVariable Long id) {
-        return new UserDto(3L, 7890, "User3");
+    @ResponseStatus(HttpStatus.CREATED)
+    public int createRandomUserKey(@PathVariable Long id) throws UserNotFoundException {
+       User user = userService.findUserById(id)
+               .orElseThrow(() -> new UserNotFoundException("User with id " + id + " not found"));
+       int key = userService.generateKey(user);
+       userService.saveUser(user);
+       return key;
+    }
+
+    @DeleteMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUSer(@PathVariable Long id) {
+        userService.deleteById(id);
+    }
+
+    @PutMapping(value = "/{id}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public UserDto updateUser(@PathVariable Long id, @RequestBody UserDto userDto) throws UserNotFoundException {
+        return userService.updateUser(id, userDto);
     }
 }
