@@ -26,25 +26,6 @@ public class UserTestSuite {
 
 
     @Test
-    public void testUserFindAll() {
-//        Given
-        User user = new User("TestName");
-
-//        When
-        userRepository.save(user);
-        Long id = user.getId();
-
-//        Then
-        assertEquals(1, userRepository.findAll().size());
-        //        Clean Up
-        try{
-            userRepository.deleteById(id);
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    @Test
     public void testUserCreate() {
 //        Given
         User user = new User("CreateName");
@@ -63,7 +44,24 @@ public class UserTestSuite {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
 
+    @Test
+    public void testUserUpdate (){
+//        Given
+        User user = new User("TestName");
+//        When
+        userRepository.save(user);
+        Long id = user.getId();
+//        Then
+        user.setName("UpdateName");
+        assertEquals("UpdateName", user.getName());
+//        Clean Up
+        try {
+            userRepository.deleteById(id);
+        }catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
     @Test
