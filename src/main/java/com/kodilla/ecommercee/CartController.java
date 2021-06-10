@@ -48,7 +48,7 @@ public class CartController {
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
-    @DeleteMapping("/{id}/{productId}")
+    @DeleteMapping("/{id}/{productId}/{deleteProduct}")
     public CartDto deleteProductFromCart(@PathVariable Long id,
                                          @PathVariable Long productId) throws CartNotFoundException {
         Cart cart = cartService.getCart(id)
@@ -72,7 +72,7 @@ public class CartController {
         return cart.getId();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/{cartId}/{createOrderFromCart}")
     public void createOrderFromCart(@PathVariable Long id) throws CartNotFoundException {
 
         Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
