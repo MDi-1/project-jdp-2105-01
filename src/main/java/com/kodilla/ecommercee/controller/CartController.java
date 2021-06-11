@@ -1,7 +1,7 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.CartDto;
-import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.dTo.CartDto;
+import com.kodilla.ecommercee.dTo.OrderDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
 @RequestMapping("/v1/cart/")
 public class CartController {
 
-    @PostMapping(value = "createEmptyCart", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createEmptyCart/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createEmptyCart(@PathVariable Long userId) {
        //do nothing
     }
