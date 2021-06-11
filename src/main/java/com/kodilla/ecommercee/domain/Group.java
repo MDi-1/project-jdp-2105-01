@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Setter
 @Entity(name = "GROUPS")
@@ -23,7 +21,6 @@ public class Group {
     @Column(name = "NAME")
     private String name;
 
-    /*
     @OneToMany(
             mappedBy = "group",
             cascade = CascadeType.ALL,
@@ -31,9 +28,7 @@ public class Group {
     )
     private List<Product> products;
 
-    public Group(@NotNull Long id, @NotNull String name) {
-        this.id = id;
+    public Group(@NotNull String name) {
         this.name = name;
     }
-     */
 }
