@@ -77,9 +77,25 @@ public class GroupTestSuite {
         for(Group item: foundItems) {
             System.out.println(item.getName());
         }
-        repository.deleteByName("test object - group Light Commodities");
+        repository.deleteByName("test object - group2");
         //then
         assertTrue(repository.count() < 4);
+        // cleanup
+        repository.deleteAll();
+    }
+
+    @Test
+    public void testFindAll() {
+        //given
+        Group group = null;
+        //when
+        for(int i = 0; i < 10; i ++) {
+            String name = "test object - group" + i;
+            group = new Group(name);
+            repository.save(group);
+        }
+        //then
+        assertEquals(10, repository.count());
         // cleanup
         repository.deleteAll();
     }
