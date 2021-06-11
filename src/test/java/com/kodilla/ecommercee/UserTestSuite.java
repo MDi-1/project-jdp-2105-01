@@ -31,15 +31,14 @@ public class UserTestSuite {
     @Test
     public void testSaveUser() {
         //Given
-        User user = new User(1L, 1234, "User1");
+        User user = new User("User1");
 
         //When
-        Long id = user.getId();
         userRepository.save(user);
 
         //Then
         Optional<User> userOptional = userRepository.findById(user.getId());
-        assertEquals(id, userOptional.get().getId());
+        assertTrue(userOptional.isPresent());
 
         //CleanUp
         userRepository.deleteAll();
