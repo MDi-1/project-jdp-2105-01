@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.OrderDto;
+import com.kodilla.ecommercee.dTo.OrderDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class OrderController {
 
     @PutMapping (value = "updateOrder", consumes = MediaType.APPLICATION_JSON_VALUE)
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        return new OrderDto();
+        return new OrderDto(1L, "fff");
     }
 
     @DeleteMapping("deleteOrder")
