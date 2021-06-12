@@ -10,11 +10,14 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-@NoArgsConstructor
+
+
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
 @Entity(name = "PRODUCTS")
+
 public class Product {
 
     public Product(String name, String description, double price) {
@@ -26,7 +29,9 @@ public class Product {
     @Id
     @GeneratedValue
     @NotNull
+
     @Column(name = "PRODUCT_ID", unique = true)
+
     private Long id;
 
     @NotNull
@@ -55,5 +60,14 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
+
     private List<Order> orders = new ArrayList<>();
+
+    public Product( Long id,  String name, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+
+    }
 }

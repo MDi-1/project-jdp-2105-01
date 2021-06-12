@@ -21,6 +21,13 @@ public class Cart {
         this.name = name;
     }
 
+
+    public Cart(Long id, User user, List<Product> productsList) {
+        this.id = id;
+        this.user = user;
+        this.products = productsList;
+    }
+
     @Id
     @GeneratedValue
     @NotNull

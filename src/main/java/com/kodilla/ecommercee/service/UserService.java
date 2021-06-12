@@ -1,7 +1,10 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.DTo.UserDto;
+import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.exception.UserNotFoundException;
+import com.kodilla.ecommercee.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

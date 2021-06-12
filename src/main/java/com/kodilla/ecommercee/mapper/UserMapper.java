@@ -1,6 +1,6 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.mapper;
 
-import com.kodilla.ecommercee.domain.UserDto;
+import com.kodilla.ecommercee.DTo.UserDto;
 import com.kodilla.ecommercee.domain.User;
 import org.springframework.stereotype.Service;
 
