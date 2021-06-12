@@ -60,7 +60,7 @@ public class CartController {
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
-    @PostMapping(value = "createCart", consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(consumes = APPLICATION_JSON_VALUE)
     public Long createCart(@RequestBody CartDto cartDto) {
         Cart cart = cartMapper.mapToCart(cartDto);
         cartService.saveCart(cart);
