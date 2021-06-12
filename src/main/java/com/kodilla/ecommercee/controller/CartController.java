@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.CartMapper;
-import com.kodilla.ecommercee.CartNotFoundException;
-import com.kodilla.ecommercee.CartService;
+import com.kodilla.ecommercee.mapper.CartMapper;
+import com.kodilla.ecommercee.exception.CartNotFoundException;
+import com.kodilla.ecommercee.service.CartService;
 import com.kodilla.ecommercee.DTo.CartDto;
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Order;

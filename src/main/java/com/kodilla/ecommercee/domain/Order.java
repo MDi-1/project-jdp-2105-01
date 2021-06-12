@@ -24,11 +24,20 @@ public class Order {
         this.products = products;
     }
 
+    public Order(String name, String orderStatus) {
+        this.name = name;
+        this.orderStatus = orderStatus;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "ORDER_ID", unique = true)
     private Long id;
+
+    @NotNull
+    @Column(name = "NAME")
+    private String name;
 
     @NotNull
     @Column(name = "STATUS")
