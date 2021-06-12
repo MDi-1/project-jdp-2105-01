@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 public class OrderDto {
     private Long id;
+    private String name;
     private String orderStatus;
 
 

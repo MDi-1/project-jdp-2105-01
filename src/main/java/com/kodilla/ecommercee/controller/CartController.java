@@ -9,6 +9,7 @@ import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -23,12 +24,14 @@ public class CartController {
     private final CartMapper cartMapper;
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public CartDto getCart(@PathVariable Long id) throws CartNotFoundException {
         Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
         return cartMapper.mapToCartDto(cart);
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public void emptyCart(@PathVariable Long id) throws CartNotFoundException {
         Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
         cart.getProducts().clear();
@@ -36,6 +39,7 @@ public class CartController {
     }
 
     @PutMapping("/{cartId}/{productId}/{quantity}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public CartDto addProductToCart(@PathVariable Long cartId,
                                     @PathVariable Long productId,
                                     @PathVariable Integer quantity) throws CartNotFoundException {
@@ -49,6 +53,7 @@ public class CartController {
     }
 
     @DeleteMapping("/{id}/{productId}/{deleteProduct}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public CartDto deleteProductFromCart(@PathVariable Long id,
                                          @PathVariable Long productId) throws CartNotFoundException {
         Cart cart = cartService.getCart(id)
@@ -61,6 +66,7 @@ public class CartController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public Long createCart(@RequestBody CartDto cartDto) {
         Cart cart = cartMapper.mapToCart(cartDto);
         cartService.saveCart(cart);
@@ -69,6 +75,7 @@ public class CartController {
     }
 
     @PostMapping("/{id}/{cartId}/{createOrderFromCart}")
+    @ResponseStatus(HttpStatus.CREATED)
     public void createOrderFromCart(@PathVariable Long id) throws CartNotFoundException {
 
         Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
