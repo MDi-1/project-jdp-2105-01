@@ -22,20 +22,20 @@ public class CartController {
     private final ProductRepository productRepository;
     private final CartMapper cartMapper;
 
-    @GetMapping("/{id}")
-    public CartDto getCart(@PathVariable Long id) throws CartNotFoundException {
-        Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
+    @GetMapping("/getCart/{cartId}")
+    public CartDto getCart(@PathVariable Long cartId) throws CartNotFoundException {
+        Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         return cartMapper.mapToCartDto(cart);
     }
 
-    @DeleteMapping("/{id}")
-    public void emptyCart(@PathVariable Long id) throws CartNotFoundException {
-        Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
+    @DeleteMapping("/deleteCart/{cartId}")
+    public void deleteCart(@PathVariable Long cartId) throws CartNotFoundException {
+        Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         cart.getProducts().clear();
         cartService.saveCart(cart);
     }
 
-    @PutMapping("/{cartId}/{productId}/{quantity}")
+    @PutMapping("/addProduct/{cartId}/{productId}/{quantity}")
     public CartDto addProductToCart(@PathVariable Long cartId,
                                     @PathVariable Long productId,
                                     @PathVariable Integer quantity) throws CartNotFoundException {
@@ -48,10 +48,10 @@ public class CartController {
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
-    @DeleteMapping("/{id}/{productId}/{deleteProduct}")
-    public CartDto deleteProductFromCart(@PathVariable Long id,
+    @DeleteMapping("/deleteProductFromCart/{cartId}/{productId}")
+    public CartDto deleteProductFromCart(@PathVariable Long cartId,
                                          @PathVariable Long productId) throws CartNotFoundException {
-        Cart cart = cartService.getCart(id)
+        Cart cart = cartService.getCart(cartId)
                 .orElseThrow(CartNotFoundException::new);
         Product product = productRepository.getOne(productId);
         cart.getProducts().remove(product);
@@ -60,7 +60,7 @@ public class CartController {
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
-    @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @PostMapping(value = "createCart", consumes = APPLICATION_JSON_VALUE)
     public Long createCart(@RequestBody CartDto cartDto) {
         Cart cart = cartMapper.mapToCart(cartDto);
         cartService.saveCart(cart);
@@ -68,10 +68,10 @@ public class CartController {
         return cart.getId();
     }
 
-    @PostMapping("/{id}/{cartId}/{createOrderFromCart}")
-    public void createOrderFromCart(@PathVariable Long id) throws CartNotFoundException {
+    @PostMapping("/createOrderFromCart/{cartId}")
+    public void createOrderFromCart(@PathVariable Long cartId) throws CartNotFoundException {
 
-        Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
+        Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         Order order = new Order(cart.getUser().getId(),
                 cart.getValue(),
                 cart.getProducts());
