@@ -1,9 +1,13 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.CartMapper;
+import com.kodilla.ecommercee.CartNotFoundException;
+import com.kodilla.ecommercee.CartService;
+import com.kodilla.ecommercee.DTo.CartDto;
 import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.Product;
-import com.kodilla.ecommercee.domain.CartDto;
 import com.kodilla.ecommercee.domain.Order;
+import com.kodilla.ecommercee.domain.Product;
+import com.kodilla.ecommercee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +17,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/v1/cart")
 @RequiredArgsConstructor
-
 public class CartController {
-
     private final CartService cartService;
     private final ProductRepository productRepository;
     private final CartMapper cartMapper;
@@ -42,13 +44,11 @@ public class CartController {
         Product product = productRepository.getOne(productId);
         cart.getProducts().add(product);
         Cart cartUpdated = cartService.saveCart(cart);
-
         System.out.println(quantity + "product/s with id " + product + " added to cart.");
-
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
-    @DeleteMapping("/{id}/{productId}")
+    @DeleteMapping("/{id}/{productId}/{deleteProduct}")
     public CartDto deleteProductFromCart(@PathVariable Long id,
                                          @PathVariable Long productId) throws CartNotFoundException {
         Cart cart = cartService.getCart(id)
@@ -56,9 +56,7 @@ public class CartController {
         Product product = productRepository.getOne(productId);
         cart.getProducts().remove(product);
         Cart cartUpdated = cartService.saveCart(cart);
-
         System.out.println("Product with id "+ productId+ " was deleted.");
-
         return cartMapper.mapToCartDto(cartUpdated);
     }
 
@@ -66,24 +64,20 @@ public class CartController {
     public Long createCart(@RequestBody CartDto cartDto) {
         Cart cart = cartMapper.mapToCart(cartDto);
         cartService.saveCart(cart);
-
         System.out.println("Empty Cart with id: "+ cart.getId()+ " was created.");
-
         return cart.getId();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/{cartId}/{createOrderFromCart}")
     public void createOrderFromCart(@PathVariable Long id) throws CartNotFoundException {
 
         Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
-
         Order order = new Order(cart.getUser().getId(),
                 cart.getValue(),
                 cart.getProducts());
-
         System.out.println("Order for User: " + cart.getUser().getId() + " value = "
                 + cart.getValue() + " includes products: " + cart.getProducts());
-
         cartService.saveOrder(order);
     }
 }
+

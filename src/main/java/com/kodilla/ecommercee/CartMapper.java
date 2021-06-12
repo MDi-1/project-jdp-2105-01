@@ -1,7 +1,8 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.DTo.CartDto;
 import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.CartDto;
+import com.kodilla.ecommercee.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

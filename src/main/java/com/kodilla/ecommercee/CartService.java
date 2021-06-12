@@ -1,8 +1,11 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.DTo.CartDto;
 import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.CartDto;
+
 import com.kodilla.ecommercee.domain.Order;
+import com.kodilla.ecommercee.repository.CartRepository;
+import com.kodilla.ecommercee.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
