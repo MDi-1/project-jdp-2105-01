@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.domain;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,15 +18,25 @@ import java.util.List;
 @Table(name = "ORDER_USER")
 public class Order {
 
+    public Order(Long id, double value, List<Product> products) {
+        this.id = id;
+        this.value = value;
+        this.products = products;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "ORDER_ID")
+    @Column(name = "ORDER_ID", unique = true)
     private Long id;
 
     @NotNull
     @Column(name = "STATUS")
     private String orderStatus;
+
+    @NotNull
+    @Column(name = "VALUE")
+    private double value;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "USER_FK")
@@ -40,6 +49,4 @@ public class Order {
             inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
     )
     private List<Product> products = new ArrayList<>();
-
-
 }

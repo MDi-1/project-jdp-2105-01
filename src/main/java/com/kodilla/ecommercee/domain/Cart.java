@@ -1,6 +1,4 @@
-
 package com.kodilla.ecommercee.domain;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,6 +21,13 @@ public class Cart {
         this.name = name;
     }
 
+
+    public Cart(Long id, User user, List<Product> productsList) {
+        this.id = id;
+        this.user = user;
+        this.products = productsList;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -32,7 +37,6 @@ public class Cart {
     @NotNull
     @Column(name = "VALUE")
     private double value;
-
 
     @NotNull
     @Column(name = "NAME")
@@ -49,7 +53,4 @@ public class Cart {
             inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "PRODUCT_ID")}
     )
     private List<Product> products = new ArrayList<>();
-
-
-
 }
