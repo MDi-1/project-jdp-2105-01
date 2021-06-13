@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.dTo.OrderDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 

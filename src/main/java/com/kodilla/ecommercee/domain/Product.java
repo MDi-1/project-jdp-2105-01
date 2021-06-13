@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -57,17 +56,15 @@ public class Product {
 
     @ManyToMany(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-
     private List<Order> orders = new ArrayList<>();
 
-    public Product( Long id,  String name, String description, double price) {
+    public Product(Long id, String name, String description, double price, Group group) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
-
+        this.group = group;
     }
 }
