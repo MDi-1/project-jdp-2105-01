@@ -15,4 +15,5 @@ public class ProductDto {
     private final double price;
     private final Long group_id;
 
+
 }
