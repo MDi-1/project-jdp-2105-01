@@ -1,12 +1,14 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.domain.Product;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import static org.junit.Assert.*;
 
@@ -17,6 +19,9 @@ public class GroupTestSuite {
 
     @Autowired
     GroupRepository repository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Test
     public void testGroupCreate() {
@@ -79,5 +84,29 @@ public class GroupTestSuite {
         }
         //then
         assertEquals(10, repository.count());
+    }
+
+    @Test
+    public void testAddProducts() {
+        //given
+        Product product1 = new Product("product1", "description1", 7.99);
+        Product product2 = new Product("product2", "description2", 0.55);
+        Product product3 = new Product("product3", "description3", 9.99);
+        Group group = new Group("test object - group 11");
+
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product2);
+
+        group.getProducts().add(product1);
+        group.getProducts().add(product2);
+        group.getProducts().add(product3);
+        repository.save(group);
+
+        //when
+        List<Product> products = productRepository.findAll();
+
+        //then
+        assertEquals(3, products.size());
     }
 }
