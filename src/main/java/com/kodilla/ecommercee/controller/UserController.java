@@ -56,13 +56,13 @@ public class UserController {
        return key;
     }
 
-    @DeleteMapping("/deleteUser/{userId}")
+    @DeleteMapping("/{userId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUSer(@PathVariable Long userId) {
         userService.deleteById(userId);
     }
 
-    @PutMapping(value = "/updateUser/{userId}")
+    @PutMapping(value = "/{userId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public UserDto updateUser(@PathVariable Long userId, @RequestBody UserDto userDto) throws UserNotFoundException {
         return userService.updateUser(userId, userDto);
