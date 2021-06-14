@@ -21,6 +21,7 @@ public class ProductController {
     private final ProductMapper productMapper;
 
 
+
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createProduct(@RequestBody ProductDto productDto) {
         Product product = productMapper.mapToProduct(productDto);
