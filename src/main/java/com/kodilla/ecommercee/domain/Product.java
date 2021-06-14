@@ -63,6 +63,7 @@ public class Product {
 
     @ManyToMany(
             cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
             mappedBy = "products"
     )
     private List<Order> orders = new ArrayList<>();

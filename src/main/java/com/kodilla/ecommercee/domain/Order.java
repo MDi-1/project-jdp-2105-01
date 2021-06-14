@@ -29,21 +29,25 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Order(@NotNull String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
     @Column(name = "ORDER_ID", unique = true)
     private Long id;
 
-    @NotNull
+
     @Column(name = "NAME")
     private String name;
 
-    @NotNull
+
     @Column(name = "STATUS")
     private String orderStatus;
 
-    @NotNull
+
     @Column(name = "VALUE")
     private double value;
 
