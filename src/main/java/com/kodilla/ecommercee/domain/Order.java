@@ -29,6 +29,12 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public Order(Long id, String name, String orderStatus) {
+        this.id = id;
+        this.name = name;
+        this.orderStatus = orderStatus;
+    }
+
     @Id
     @GeneratedValue
     @NotNull

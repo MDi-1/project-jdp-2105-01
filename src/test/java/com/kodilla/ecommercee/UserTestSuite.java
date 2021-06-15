@@ -43,9 +43,6 @@ public class UserTestSuite {
         //Then
         Optional<User> userOptional = userRepository.findById(user.getId());
         assertTrue(userOptional.isPresent());
-
-        //CleanUp
-        userRepository.deleteAll();
     }
 
     @Test
@@ -59,9 +56,6 @@ public class UserTestSuite {
         //Then
         Optional<User> userOptional = userRepository.findById(user.getId());
         assertTrue(userOptional.isPresent());
-
-        //CleanUp
-        userRepository.deleteAll();
     }
 
     @Test
@@ -80,9 +74,6 @@ public class UserTestSuite {
         //Then
         assertEquals(userId, updateUserId);
         assertEquals("UserUpdate", updateUser.getName());
-
-        //CleanUp
-        userRepository.deleteAll();
     }
 
     @Test
@@ -113,9 +104,6 @@ public class UserTestSuite {
         //Then
         List<Cart> carts = cartRepository.findAll();
         assertEquals(cart, carts.get(0));
-
-        //CleanUp
-        cartRepository.deleteAll();
     }
 
     @Test
@@ -133,8 +121,5 @@ public class UserTestSuite {
         //Then
         List<Order> orders = orderRepository.findAll();
         assertEquals(order, orders.get(0));
-
-        //CleanUp
-        orderRepository.deleteAll();
     }
 }
