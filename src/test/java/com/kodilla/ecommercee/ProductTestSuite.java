@@ -61,7 +61,6 @@ public class ProductTestSuite {
 
         assertEquals(id, products.get(0).getId());
 
-        productRepository.delete(product);
     }
 
     @Test
@@ -78,7 +77,6 @@ public class ProductTestSuite {
         List<Product> products = productRepository.findAll();
         assertEquals(0, products.size());
 
-        productRepository.delete(product);
     }
 
     @Test
@@ -98,8 +96,6 @@ public class ProductTestSuite {
         //Then
         assertEquals(2, cart.getProducts().size());
 
-        productRepository.delete(product1);
-        productRepository.delete(product2);
     }
 
     @Test
@@ -119,8 +115,6 @@ public class ProductTestSuite {
         //Then
         assertEquals(2, order.getProducts().size());
 
-        productRepository.delete(product1);
-        productRepository.delete(product2);
     }
 
     @Test
@@ -147,8 +141,6 @@ public class ProductTestSuite {
         List<Cart> carts = cartRepository.findAll();
         assertEquals(1, carts.size());
 
-        productRepository.delete(product1);
-        productRepository.delete(product2);
     }
 
     @Test
@@ -175,8 +167,6 @@ public class ProductTestSuite {
         List<Order> orders = orderRepository.findAll();
         assertEquals(1, orders.size());
 
-        productRepository.delete(product1);
-        productRepository.delete(product2);
     }
 }
 
