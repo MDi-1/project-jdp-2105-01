@@ -22,19 +22,15 @@ public class CartController {
     private final ProductRepository productRepository;
     private final CartMapper cartMapper;
 
-    @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public CartDto getCart(@PathVariable Long id) throws CartNotFoundException {
-        Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
+    @GetMapping("/{cartId}")
+    public CartDto getCart(@PathVariable Long cartId) throws CartNotFoundException {
+        Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         return cartMapper.mapToCartDto(cart);
     }
 
-    @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void emptyCart(@PathVariable Long id) throws CartNotFoundException {
-        Cart cart = cartService.getCart(id).orElseThrow(CartNotFoundException::new);
-        cart.getProducts().clear();
-        cartService.saveCart(cart);
+    @DeleteMapping("/{cartId}")
+    public void deleteCart(@PathVariable Long cartId) throws CartNotFoundException {
+        Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
     }
 
     @PutMapping("/{cartId}/{productId}/{quantity}")
