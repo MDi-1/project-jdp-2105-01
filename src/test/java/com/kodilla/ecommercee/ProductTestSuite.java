@@ -36,7 +36,6 @@ public class ProductTestSuite {
 
         //Given
         Product product = new Product(1L, "Product1", "Product", 22);
-        Product product1 = new Product(1L, "Prot1", "Prot", 22);
 
         //When
         productRepository.save(product);

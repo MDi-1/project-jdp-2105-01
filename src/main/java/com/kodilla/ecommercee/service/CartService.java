@@ -6,16 +6,16 @@ import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.dto.CartDto;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.OrderRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@RequiredArgsConstructor
+@AllArgsConstructor
 @Service
 public class CartService {
-    private final CartRepository cartRepository;
-    private final OrderRepository orderRepository;
+    private CartRepository cartRepository;
+    private OrderRepository orderRepository;
 
     public Optional<Cart> getCart(final Long id) {
         return cartRepository.findById(id);
