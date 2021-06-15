@@ -9,6 +9,7 @@ import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -22,20 +23,19 @@ public class CartController {
     private final ProductRepository productRepository;
     private final CartMapper cartMapper;
 
-    @GetMapping("/getCart/{cartId}")
+    @GetMapping("/{cartId}")
     public CartDto getCart(@PathVariable Long cartId) throws CartNotFoundException {
         Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         return cartMapper.mapToCartDto(cart);
     }
 
-    @DeleteMapping("/deleteCart/{cartId}")
+    @DeleteMapping("/{cartId}")
     public void deleteCart(@PathVariable Long cartId) throws CartNotFoundException {
         Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
-        cart.getProducts().clear();
-        cartService.saveCart(cart);
     }
-
-    @PutMapping("/addProduct/{cartId}/{productId}/{quantity}")
+      
+    @PutMapping("/{cartId}/{productId}/{quantity}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public CartDto addProductToCart(@PathVariable Long cartId,
                                     @PathVariable Long productId,
                                     @PathVariable Integer quantity) throws CartNotFoundException {
@@ -61,6 +61,7 @@ public class CartController {
     }
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
     public Long createCart(@RequestBody CartDto cartDto) {
         Cart cart = cartMapper.mapToCart(cartDto);
         cartService.saveCart(cart);
@@ -69,8 +70,8 @@ public class CartController {
     }
 
     @PostMapping("/createOrderFromCart/{cartId}")
+   @ResponseStatus(HttpStatus.CREATED)
     public void createOrderFromCart(@PathVariable Long cartId) throws CartNotFoundException {
-
         Cart cart = cartService.getCart(cartId).orElseThrow(CartNotFoundException::new);
         Order order = new Order(cart.getUser().getId(),
                 cart.getValue(),
