@@ -11,6 +11,9 @@ import java.util.List;
 @RequestMapping("v1/group")
 public class GroupController {
 
+    //private final GroupService groupService;
+    //private final GroupMapper groupMapper;
+
     @GetMapping(value = "getGroups")
     public List<GroupDto> getGroups() {
         return new ArrayList<>();
