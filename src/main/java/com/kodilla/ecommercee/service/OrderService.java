@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.dTo.OrderDto;
-import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.exception.OrderNotFoundException;
 import com.kodilla.ecommercee.mapper.OrderMapper;

@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.DTo.UserDto;
+import com.kodilla.ecommercee.dTo.UserDto;
 import com.kodilla.ecommercee.mapper.UserMapper;
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.exception.UserNotFoundException;
