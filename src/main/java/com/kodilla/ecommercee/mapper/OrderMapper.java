@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee.mapper;
 
-import com.kodilla.ecommercee.dTo.OrderDto;
+import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.domain.Order;
 import org.springframework.stereotype.Service;
 

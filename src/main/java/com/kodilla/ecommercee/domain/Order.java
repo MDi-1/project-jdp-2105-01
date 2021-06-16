@@ -29,10 +29,16 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+
+    public Order(@NotNull String name) {
+        this.name = name;
+    }
+
     public Order(Long id, String name, String orderStatus) {
         this.id = id;
         this.name = name;
         this.orderStatus = orderStatus;
+
     }
 
     @Id
@@ -41,15 +47,15 @@ public class Order {
     @Column(name = "ORDER_ID", unique = true)
     private Long id;
 
-    @NotNull
+
     @Column(name = "NAME")
     private String name;
 
-    @NotNull
+
     @Column(name = "STATUS")
     private String orderStatus;
 
-    @NotNull
+
     @Column(name = "VALUE")
     private double value;
 

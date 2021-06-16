@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.dTo;
+package com.kodilla.ecommercee.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -8,6 +8,6 @@ import lombok.Getter;
 @AllArgsConstructor
 public class GroupDto {
 
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
 }
