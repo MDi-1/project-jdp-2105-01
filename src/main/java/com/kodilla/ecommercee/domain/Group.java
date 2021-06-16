@@ -14,6 +14,10 @@ import java.util.List;
 @Entity(name = "GROUPS")
 public class Group {
 
+    public Group(@NotNull String name) {
+        this.name = name;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
@@ -29,8 +33,4 @@ public class Group {
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
-
-    public Group(@NotNull String name) {
-        this.name = name;
-    }
 }

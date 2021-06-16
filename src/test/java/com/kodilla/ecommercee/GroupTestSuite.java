@@ -158,21 +158,10 @@ public class GroupTestSuite {
         repository.save(group);
 
         //when
-        System.out.println("\n" + group.getName());
-        List<Product> products = productRepository.findAll();
-        for(Product item: products) {
-            System.out.println("id= " + item.getId() + "; name= " + item.getName());
-        }
-        //System.out.println("product name=" + productRepository.findById(1L).get().getName());
         repository.deleteById(group.getId());
-
-        System.out.println("group removed \n" + products.size() + "\n");
-        List<Product> products2 = productRepository.findAll();
-        for(Product item: products2) {
-            System.out.println("id= " + item.getId() + "; name= " + item.getName());
-        }
+        List<Product> products = productRepository.findAll();
 
         //then
-        assertEquals(3, products2.size());
+        assertEquals(3, products.size());
     }
 }
