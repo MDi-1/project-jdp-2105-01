@@ -139,4 +139,40 @@ public class GroupTestSuite {
         //then
         assertEquals(1, products.size());
     }
+
+    @Test
+    public void testProductsAfterGroupRemoval() {
+        //given
+        Product product1 = new Product("product1", "description1", 7.99);
+        Product product2 = new Product("product2", "description2", 0.55);
+        Product product3 = new Product("product3", "description3", 9.99);
+        Group group = new Group("test object - group 11");
+
+        productRepository.save(product1);
+        productRepository.save(product2);
+        productRepository.save(product2);
+
+        group.getProducts().add(product1);
+        group.getProducts().add(product2);
+        group.getProducts().add(product3);
+        repository.save(group);
+
+        //when
+        System.out.println("\n" + group.getName());
+        List<Product> products = productRepository.findAll();
+        for(Product item: products) {
+            System.out.println("id= " + item.getId() + "; name= " + item.getName());
+        }
+        //System.out.println("product name=" + productRepository.findById(1L).get().getName());
+        repository.deleteById(group.getId());
+
+        System.out.println("group removed \n" + products.size() + "\n");
+        List<Product> products2 = productRepository.findAll();
+        for(Product item: products2) {
+            System.out.println("id= " + item.getId() + "; name= " + item.getName());
+        }
+
+        //then
+        assertEquals(3, products2.size());
+    }
 }

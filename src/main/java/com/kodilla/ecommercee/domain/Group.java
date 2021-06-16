@@ -25,7 +25,7 @@ public class Group {
 
     @OneToMany(
             mappedBy = "group",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH},
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
