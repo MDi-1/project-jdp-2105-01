@@ -4,12 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,12 +30,18 @@ public class Product {
         this.price = price;
     }
 
+    public Product(Long id, String name, String description, double price, Group group) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.group = group;
+    }
+
     @Id
     @GeneratedValue
     @NotNull
-
     @Column(name = "PRODUCT_ID", unique = true)
-
     private Long id;
 
     @NotNull
@@ -67,14 +71,4 @@ public class Product {
             mappedBy = "products"
     )
     private List<Order> orders = new ArrayList<>();
-
-    public Product(Long id, String name, String description, double price, Group group) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.group = group;
-
-    }
-
 }
