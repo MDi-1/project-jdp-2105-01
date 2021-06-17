@@ -1,9 +1,12 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.DTo.UserDto;
+
+
+import com.kodilla.ecommercee.domain.User;
+import com.kodilla.ecommercee.dto.UserDto;
+
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.service.UserService;
-import com.kodilla.ecommercee.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

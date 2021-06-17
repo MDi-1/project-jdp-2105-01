@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,6 +20,13 @@ import java.util.List;
 public class Product {
 
     public Product(String name, String description, double price) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public Product(Long id, String name, String description, double price) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
@@ -60,14 +66,15 @@ public class Product {
             fetch = FetchType.LAZY,
             mappedBy = "products"
     )
-
     private List<Order> orders = new ArrayList<>();
 
-    public Product( Long id,  String name, String description, double price) {
+    public Product(Long id, String name, String description, double price, Group group) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
+        this.group = group;
 
     }
+
 }

@@ -1,9 +1,9 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.DTo.CartDto;
-import com.kodilla.ecommercee.domain.Cart;
 
+import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Order;
+import com.kodilla.ecommercee.dto.CartDto;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -32,4 +32,6 @@ public class CartService {
     public Order saveOrder(final Order order) {
         return orderRepository.save(order);
     }
+
+
 }
