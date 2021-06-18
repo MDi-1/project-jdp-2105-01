@@ -1,11 +1,18 @@
 package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.exception.ProductNotFoundException;
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.Product;
+import com.kodilla.ecommercee.dto.OrderDto;
 import com.kodilla.ecommercee.dto.ProductDto;
+import com.kodilla.ecommercee.exception.OrderNotFoundException;
+import com.kodilla.ecommercee.exception.ProductNotFoundException;
+import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
+import com.kodilla.ecommercee.repository.ProductRepository;
+import com.kodilla.ecommercee.service.OrderService;
 import com.kodilla.ecommercee.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +26,9 @@ public class ProductController {
 
     private final ProductService service;
     private final ProductMapper productMapper;
-
+    private final OrderService orderService;
+    private final ProductRepository productRepository;
+    private final OrderMapper orderMapper;
 
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -54,5 +63,18 @@ public class ProductController {
         List<Product> products = service.getAllProducts();
         return productMapper.mapToProductDtoList(products);
     }
+
+    @PutMapping("/{orderId}/{productId}/addToOrder")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public OrderDto addProductToOrder(@PathVariable Long orderId,
+                                      @PathVariable Long productId)
+            throws OrderNotFoundException {
+        Order order = orderService.getOrder(orderId).orElseThrow(() -> new OrderNotFoundException("not found"));
+        Product product = productRepository.getOne(productId);
+        order.getProducts().add(product);
+        Order orderUpdated = orderService.saveOrder(order);
+        return orderMapper.mapToOrderDto(orderUpdated);
+    }
+
 }
 
