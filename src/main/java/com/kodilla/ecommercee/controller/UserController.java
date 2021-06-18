@@ -1,10 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
-
-
 import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.dto.UserDto;
-
 import com.kodilla.ecommercee.exception.UserNotFoundException;
 import com.kodilla.ecommercee.service.UserService;
 import lombok.RequiredArgsConstructor;

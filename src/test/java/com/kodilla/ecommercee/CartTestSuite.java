@@ -49,9 +49,6 @@ public class CartTestSuite {
         //Then
         Optional<Cart> cartOptional = cartRepository.findById(id);
         assertEquals(id, cartOptional.get().getId());
-
-        //CleanUp
-        cartRepository.deleteById(id);
     }
 
     @Test
@@ -128,9 +125,6 @@ public class CartTestSuite {
         //Then
         List<Product> products = productRepository.findAll();
         assertEquals(2, products.size());
-
-        //CleanUp
-        productRepository.deleteAll();
     }
 
     @Test
@@ -148,8 +142,5 @@ public class CartTestSuite {
         //Then
         List<User> users = userRepository.findAll();
         assertEquals(user, users.get(0));
-
-        //CleanUp
-        userRepository.deleteAll();
     }
 }
