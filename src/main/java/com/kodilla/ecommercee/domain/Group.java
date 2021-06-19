@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "GROUPS")
+@Entity(name = "PRODUCT_GROUP")
 public class Group {
 
     public Group(@NotNull String name) {
