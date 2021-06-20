@@ -35,7 +35,7 @@ public class OrderTestSuite {
     ProductRepository productRepository;
 
     @Test
-    public void testSaveOrder() {
+    public void testCreateAndSaveOrder() {
         //Given
         Order order = new Order(1L, "Order1", "Send");
 
@@ -45,10 +45,11 @@ public class OrderTestSuite {
         //Then
         List<Order> orders = orderRepository.findAll();
         assertEquals(1, orders.size());
+        assertEquals("Order1", orders.get(0).getName());
     }
 
     @Test
-    public void testUserWhenOrderDeleted() {
+    public void testDeleteOrderWhenUserIsPresent() {
         //Given
         Order order = new Order("Order1", "Send");
         User user = new User("User1");
@@ -85,11 +86,11 @@ public class OrderTestSuite {
 
     @Test
     public void testAddProductToOrder() {
-        Product product1 = new Product("Product1", "Description1", 10.50);
-        Product product2 = new Product("Product2", "Description2", 21.70);
-        Product product3 = new Product("Product3", "Description3", 12.30);
+        Product product1 = new Product("Product1", "Description1", 10.00);
+        Product product2 = new Product("Product2", "Description2", 11.00);
+        Product product3 = new Product("Product3", "Description3", 12.00);
         List<Product> products = new ArrayList<>();
-        Order order = new Order(1L, 44.50, products);
+        Order order = new Order(1L, 33.00, products);
 
 
         //When
@@ -100,18 +101,17 @@ public class OrderTestSuite {
         orderRepository.save(order);
 
         //Then
-       /* Optional<Order> orderOptional = orderRepository.findById(orderId);
-        assertTrue(orderOptional.isPresent());*/
         assertEquals(3, products.size());
     }
 
+
     @Test
     public void testDeleteProductFromOrder() {
-        Product product1 = new Product("Product1", "Description1", 10.50);
-        Product product2 = new Product("Product2", "Description2", 21.70);
-        Product product3 = new Product("Product3", "Description3", 12.30);
+        Product product1 = new Product("Product1", "Description1", 10.00);
+        Product product2 = new Product("Product2", "Description2", 11.00);
+        Product product3 = new Product("Product3", "Description3", 12.00);
         List<Product> products = new ArrayList<>();
-        Order order = new Order(1L, 44.50, products);
+        Order order = new Order(1L, 33.00, products);
 
         order.getProducts().add(product1);
         order.getProducts().add(product2);
@@ -119,14 +119,11 @@ public class OrderTestSuite {
         orderRepository.save(order);
 
         //When
-        Long orderId = order.getId();
         order.getProducts().remove(product2);
         orderRepository.save(order);
 
 
         //Then
-       /* Optional<Order> orderOptional = orderRepository.findById(orderId);
-        assertTrue(orderOptional.);*/
         assertEquals(2, products.size());
     }
 }
