@@ -64,16 +64,25 @@ public class ProductController {
         return productMapper.mapToProductDtoList(products);
     }
 
-    @PutMapping("/{orderId}/{productId}/addToOrder")
+    @RequestMapping(method = RequestMethod.PUT, value = "/{orderId}/{productId}/addProductToOrder")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public OrderDto addProductToOrder(@PathVariable Long orderId,
-                                      @PathVariable Long productId)
-            throws OrderNotFoundException {
-        Order order = orderService.getOrder(orderId).orElseThrow(() -> new OrderNotFoundException("not found"));
+                                      @PathVariable Long productId) throws OrderNotFoundException {
+        Order order = orderService.getOrder(orderId).orElseThrow(() -> new OrderNotFoundException("not found order Id" + orderId));
         Product product = productRepository.getOne(productId);
         order.getProducts().add(product);
         Order orderUpdated = orderService.saveOrder(order);
         return orderMapper.mapToOrderDto(orderUpdated);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/{orderId}/{productId}/deleteProductFromOrder")
+    public OrderDto deleteProductFromOrder(@PathVariable Long orderId,
+                                           @PathVariable Long productId) throws OrderNotFoundException {
+        Order order = orderService.getOrder(orderId).orElseThrow(() -> new OrderNotFoundException("not found order Id" + orderId));
+        Product product = productRepository.getOne(productId);
+        order.getProducts().remove(product);
+        Order orderUpdate = orderService.saveOrder(order);
+        return orderMapper.mapToOrderDto(orderUpdate);
     }
 
 }
