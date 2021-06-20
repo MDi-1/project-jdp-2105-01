@@ -1,8 +1,6 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -15,6 +13,11 @@ import java.util.List;
 public class Group {
 
     public Group(@NotNull String name) {
+        this.name = name;
+    }
+
+    public Group(Long id, @NotNull String name) {
+        this.id = id;
         this.name = name;
     }
 
