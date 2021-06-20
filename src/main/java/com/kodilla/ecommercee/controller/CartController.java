@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.controller;
 
-
 import com.kodilla.ecommercee.dto.CartDto;
 import com.kodilla.ecommercee.mapper.CartMapper;
 import com.kodilla.ecommercee.exception.CartNotFoundException;
@@ -63,11 +62,8 @@ public class CartController {
 
     @PostMapping(consumes = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public Long createCart(@RequestBody CartDto cartDto) {
-        Cart cart = cartMapper.mapToCart(cartDto);
-        cartService.saveCart(cart);
-        System.out.println("Empty Cart with id: "+ cart.getId()+ " was created.");
-        return cart.getId();
+    public void createCart(@RequestBody CartDto cartDto) {
+        cartService.saveCart(cartMapper.mapToCart(cartDto));
     }
 
     @PostMapping("/{id}/{cartId}/{createOrderFromCart}")
