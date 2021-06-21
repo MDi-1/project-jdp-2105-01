@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @NoArgsConstructor
 @Getter
@@ -37,4 +38,8 @@ public class Group {
             fetch = FetchType.LAZY
     )
     private List<Product> products = new ArrayList<>();
+
+    public List<Long> getProductIds() {
+        return products.stream().map(Product::getId).collect(Collectors.toList());
+    }
 }
