@@ -9,7 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity(name = "PRODUCT_GROUP")
+@Entity
+@Table(name = "\"GROUPS\"")
 public class Group {
 
     public Group(@NotNull String name) {
