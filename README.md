@@ -1,4 +1,4 @@
-                # 1. Description
+# 1. Description
 
 This project is a group exercise including implementation of a simple backend logic for an ecommerce store.
 In project You can find 5 entities (Cart, User, Product, Order and Group) that uses SQL relationships.
