@@ -12,6 +12,5 @@ import java.util.List;
 public class CartDto {
     private Long id;
     private Long userId;
-    private double value;
     private List<Long> productId;
 }

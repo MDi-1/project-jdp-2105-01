@@ -5,12 +5,14 @@ import com.kodilla.ecommercee.dto.CartDto;
 import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import com.kodilla.ecommercee.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class CartMapper {
     private UserRepository userRepository;
     private ProductRepository productRepository;
@@ -29,7 +31,6 @@ public class CartMapper {
         return new CartDto(
                 cart.getId(),
                 cart.getUser().getId(),
-                cart.getValue(),
                 cart.getProducts().stream()
                 .map(Product::getId)
                 .collect(Collectors.toList())

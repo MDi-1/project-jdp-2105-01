@@ -40,7 +40,7 @@ public class CartTestSuite {
     @Test
     public void testFindById() {
         //Given
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
 
         //When
         cartRepository.save(cart);
@@ -54,7 +54,7 @@ public class CartTestSuite {
     @Test
     public void testDeleteCart() {
         //Given
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
 
         //When
         cartRepository.save(cart);
@@ -70,7 +70,7 @@ public class CartTestSuite {
         //Given
         Product product1 = new Product("Product1", "Description1", 10.00);
         Product product2 = new Product("Product2", "Description2", 20.00);
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
 
         //When
         cart.getProducts().add(product1);
@@ -89,7 +89,7 @@ public class CartTestSuite {
         //Given
         Product product1 = new Product("Product1", "Description1", 7.50);
         Product product2 = new Product("Product2", "Description2", 12.30);
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
 
         //When
         cart.getProducts().add(product1);
@@ -109,7 +109,7 @@ public class CartTestSuite {
     public void testProductIsPresentWhenCartDeleted() {
         //Given
         User user = new User("User1");
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
         Product product1 = new Product("Product1", "Description1", 13.70);
         Product product2 = new Product("Product2", "Description2", 20.00);
 
@@ -130,7 +130,7 @@ public class CartTestSuite {
     @Test
     public void testUserWhenCartDeleted() {
         //Given
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
         User user = new User("User1");
         cart.setUser(user);
 

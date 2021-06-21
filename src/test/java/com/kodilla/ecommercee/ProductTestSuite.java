@@ -86,7 +86,7 @@ public class ProductTestSuite {
         Product product1 = new Product("Product1", "Product1", 22);
         Product product2 = new Product("Product2", "Product2", 21);
 
-        Cart cart = new Cart("Cart");
+        Cart cart = new Cart();
 
         //When
         cart.getProducts().add(product1);
@@ -124,7 +124,7 @@ public class ProductTestSuite {
         Product product1 = new Product("Product1", "Product1", 22);
         Product product2 = new Product("Product2", "Product2", 21);
 
-        Cart cart = new Cart("Cart");
+        Cart cart = new Cart();
 
         //When
         cart.getProducts().add(product1);
