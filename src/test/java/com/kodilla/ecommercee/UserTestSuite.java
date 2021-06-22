@@ -93,7 +93,7 @@ public class UserTestSuite {
     public void testCartWhenUserDeleted() {
         //Given
         User user = new User("User1");
-        Cart cart = new Cart("Cart1");
+        Cart cart = new Cart();
         cart.setUser(user);
 
         //When

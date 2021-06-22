@@ -18,9 +18,8 @@ import java.util.List;
 @Table(name = "ORDER_USER")
 public class Order {
 
-    public Order(Long id, double value, List<Product> products) {
+    public Order(Long id, List<Product> products) {
         this.id = id;
-        this.value = value;
         this.products = products;
     }
 

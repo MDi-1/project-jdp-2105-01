@@ -90,7 +90,7 @@ public class OrderTestSuite {
         Product product2 = new Product("Product2", "Description2", 11.00);
         Product product3 = new Product("Product3", "Description3", 12.00);
         List<Product> products = new ArrayList<>();
-        Order order = new Order(1L, 33.00, products);
+        Order order = new Order(1L, products);
 
 
         //When
@@ -111,7 +111,7 @@ public class OrderTestSuite {
         Product product2 = new Product("Product2", "Description2", 11.00);
         Product product3 = new Product("Product3", "Description3", 12.00);
         List<Product> products = new ArrayList<>();
-        Order order = new Order(1L, 33.00, products);
+        Order order = new Order(1L, products);
 
         order.getProducts().add(product1);
         order.getProducts().add(product2);

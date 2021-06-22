@@ -20,7 +20,7 @@ public class OrderMapper {
         return new OrderDto(order.getId(),
                 order.getName(),
                 order.getOrderStatus(),
-                order.getUser(),
+                order.getUser().getId(),
                 order.getValue());
     }
 
