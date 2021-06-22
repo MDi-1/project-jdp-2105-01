@@ -36,4 +36,7 @@ dependencies {
 
     testCompileOnly 'org.projectlombok:lombok:1.18.12'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.2'
 }
+
